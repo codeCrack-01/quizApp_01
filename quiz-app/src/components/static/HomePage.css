@@ -1,0 +1,194 @@
+:root {
+  --button_main: #40E0D0
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #290025, #63035a);
+  background-size: 800%;
+  animation: gradientRotate 7.5s ease infinite;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+@keyframes gradientRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.title-button button {
+  width: 200px;
+  padding: 15px 30px;
+
+  font-size: 1.2em;
+  text-align: center;
+
+  margin: 42px 25px;
+  border-radius: 25px;
+
+  font-weight: bold;
+  border: 2px solid var(--button_main);
+
+  background: transparent;
+  color: #fff;
+
+  cursor: pointer;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.title-button button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--button_main);
+  transition: left 0.5s;
+  z-index: 0;
+}
+
+.title-button button:hover::after {
+  left: 0;
+}
+
+.title-button button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile and tablet styles - always filled */
+@media (max-width: 768px) {
+  .title-button button {
+    background: var(--button_main);
+    color: #fff;
+  }
+
+  .title-button button::after {
+    content: none; /* Hide the pseudo-element */
+  }
+
+  .title-button button:hover::after {
+    left: 0; /* Ensure the hover effect doesn’t override */
+  }
+}
+
+/* Adding Experimental Styling */
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  background: linear-gradient(135deg, #f06, #a0e);
+  border-radius: 12px;
+  border-color: #a09;
+  border-style: outset;
+  padding: 20px;
+
+  width: 60vw;
+  box-shadow: 0px 0px 32px 32px rgba(255, 255, 255, 0.1);
+}
+
+@media screen and (max-width: 425px) { /* Mobie Phones */
+  .title-container {
+    border-start-end-radius: 25px;
+    border-start-start-radius: 15px;
+    border-end-end-radius: 20px;
+    
+    box-shadow: 2px 2px 8px violet inset;
+  }
+
+  .title-box {
+    height: 500px;
+  }
+
+  .title-button {
+    width: 60vw;
+    margin-top: 1vh;
+  }
+}
+@media screen and (max-width: 768px) { /* Tablets */
+  .title-container {
+    width: 60vw;
+    height: 50vh;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .title-button {
+    margin-top: 5vh;
+  }
+}
+
+.title-box {
+  background-color: rgba(25, 25, 25, 0.75);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: center;
+
+  animation: fadeIn 1s ease-out;
+}
+
+.title-button {
+  background-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.24);
+  position: relative;
+  text-align: center;
+
+  animation: fadeIn 2s cubic-bezier(0.43, -0.53, 0.01, 0.83);
+  border-radius: 15px;
+  
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.title-box::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9IiMwMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZycvIj4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgLz4KPC9zdmc+'); /* SVG circle */
+  background-size: cover;
+}
+
+.title-box h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}

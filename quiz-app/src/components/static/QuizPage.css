@@ -1,0 +1,119 @@
+:root {
+    --correct: #30fbf4; 
+    --wrong: #fb3430;
+}
+
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('../../assets/Lato/Lato-Bold.ttf');
+}
+
+.quiz-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+
+    position: relative;
+    text-align: center;
+
+    width: 72vw;
+    height: 86vh;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.qTitle {
+    color: #fff;
+    font-size: 42px;
+    margin: 0;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.button-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+
+    position: relative;
+    text-align: center;
+
+    flex-wrap: wrap;
+    gap: 10px;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 425px) {
+    .qTitle {
+        font-size: 2px;
+        color: #f0f0f0;
+    }
+}
+@media screen and (max-width: 768px) {
+    .qTitle {
+        font-size: 36px;
+    }
+}
+
+/* MCQ Buttons */
+  
+.mcq-button {
+    flex: 1;
+    min-width: 200px; /* Minimum width to ensure buttons don't get too small */
+    max-width: 300px; /* Maximum width to keep buttons uniform */
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    background-color: #3ba63e; /* Green */
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Ensures overflow text is hidden */
+    text-overflow: ellipsis; /* Adds ellipsis (...) for overflow text */
+}
+  
+.mcq-button:hover {
+    background-color: #4fde53; /* Darker green */
+    transform: scale(1.05);
+}
+  
+.mcq-button:active {
+    background-color: #ddd; /* Even darker green */
+    transform: scale(1);
+}
+  
+.mcq-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+  
+.mcq-button + .mcq-button {
+    margin-top: 10px;
+}
+  
+  /* Additional styles for mobile responsiveness */
+@media (max-width: 600px) {
+    .mcq-button {
+      width: 90%;
+      font-size: 14px;
+      padding: 12px 24px;
+    }
+}
+  
