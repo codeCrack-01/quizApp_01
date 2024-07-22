@@ -1,6 +1,8 @@
 :root {
     --correct: #30fbf4; 
     --wrong: #fb3430;
+    --normal: #3ba63e;
+    --disabled: gray;
 }
 
 @font-face {
@@ -79,7 +81,7 @@
     font-weight: bold;
     text-align: center;
     color: #fff;
-    background-color: #3ba63e; /* Green */
+    background-color: var(--normal); /* Green */
     border: none;
     border-radius: 8px;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -108,7 +110,7 @@
     margin-top: 10px;
 }
   
-  /* Additional styles for mobile responsiveness */
+/* Additional styles for mobile responsiveness */
 @media (max-width: 600px) {
     .mcq-button {
       width: 90%;
@@ -116,4 +118,3 @@
       padding: 12px 24px;
     }
 }
-  

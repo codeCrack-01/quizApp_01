@@ -11,7 +11,7 @@ body {
   height: 100vh;
   background: linear-gradient(135deg, #290025, #63035a);
   background-size: 800%;
-  animation: gradientRotate 7.5s ease infinite;
+  animation: gradientRotate 5s ease-in-out infinite;
   font-family: 'Roboto', sans-serif;
   color: #fff;
   text-align: center;
@@ -33,7 +33,7 @@ body {
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.6);
   }
   100% {
     opacity: 1;
@@ -156,7 +156,7 @@ body {
   position: relative;
   text-align: center;
 
-  animation: fadeIn 1s ease-out;
+  animation: fadeIn 1.5s ease-out;
 }
 
 .title-button {

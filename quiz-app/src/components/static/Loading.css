@@ -1,0 +1,34 @@
+/* Loading Styler */
+.LoaderContainer {
+    position: relative;
+    width: 60vw;
+    height: 1vh;
+    margin: 20px auto;
+}
+
+.LoaderShadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.Loader {
+    background-color: lime;
+    border-radius: 12px;
+    width: 0;
+    height: 100%;
+    animation: loadingAnimation 3s ease-in-out;
+}
+
+@keyframes loadingAnimation {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 60vw;
+    }
+}

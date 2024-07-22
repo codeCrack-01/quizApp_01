@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import './static/QuizPage.css'
 import axios from 'axios';
 import $ from 'jquery';
+import LoaderComponent from "./Loader";
 
 interface TriviaQuestion {
     category: string;
@@ -12,14 +13,21 @@ interface TriviaQuestion {
     incorrectAnswers: string[];
 }
 
+enum CheckResponse {
+    CORRECT,
+    WRONG,
+    UNDEFINED
+}
+
 const QuizPage: React.FC = () => {
 
     const [questions, setQuestions] = useState<TriviaQuestion[]>([]);
+
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     const [q_index, setQ_Index] = useState<number>(1);
-    const [correctResponses, setResponses] = useState<number>(0);
+    const [check, setCheck] = useState<CheckResponse>(CheckResponse.UNDEFINED);
 
         // Function to generate a new URL
         const generateUrl = () => {
@@ -52,6 +60,7 @@ const QuizPage: React.FC = () => {
             return array;
         };
 
+
         const Q_by_Index = () => {
 
             var i = q_index;
@@ -72,40 +81,80 @@ const QuizPage: React.FC = () => {
                 );
             }
         }
+
+
         const validateAnswer = (value: string, id_num: number) => {
 
             if (value == questions[q_index].correctAnswer) {
                 $('#' + id_num).css({
                     'background-color': 'var(--correct)'
                 });
-                setQ_Index(q_index + 1);
-                // alert('Correct ! ' + c_id);
+                setCheck(CheckResponse.CORRECT);
             }
             else {
                 $('#' + id_num).css({
                     'background-color': 'var(--wrong)'
                 });
-                // alert('Wrong ! ' + c_id);
+                setCheck(CheckResponse.WRONG);
             }
         }
     
         useEffect(() => {
             fetchTriviaAPI();
         }, []); // The empty dependency array ensures this runs only once when the component mounts
+
+
+        const ShowCorrect = () => {
+            return (
+                <>
+                    <LoaderComponent q_id={q_index} nextQ={setQ_Index} changeState={setCheck} />
+                    <br /><br />
+                    <h1>Correct Answer</h1>
+                </>
+            );
+        }
+        const ShowIncorrect = () => {
+            return (
+                <>
+                    <LoaderComponent q_id={q_index} nextQ={setQ_Index} changeState={setCheck} />
+                    <br /><br />
+                    <h1>Wrong Answer</h1>
+                </>
+            );
+        }
+
     
         if (loading) {
-            return <div>Loading...</div>;
+            return <div className="quiz-container"><h1>Loading...</h1></div>;
         }
     
         if (error) {
-            return <div>{error}</div>;
+            return <div className="quiz-container">{error}</div>;
         }
+
+        /* Main Return Statements */
     
-        return (
-            <div className="quiz-container">
-                {Q_by_Index()}
-            </div>
-        );
+        if (check == CheckResponse.UNDEFINED) {
+            return (
+                <div className="quiz-container">
+                    {Q_by_Index()}
+                </div>
+            );
+        }
+        else if (check == CheckResponse.CORRECT) {
+            return (
+                <div className="quiz-container">
+                    {ShowCorrect()}
+                </div>
+            );
+        }
+        else {
+            return (
+                <div className="quiz-container">
+                    {ShowIncorrect()}
+                </div>
+            );
+        }
 }
 
 export default QuizPage;
