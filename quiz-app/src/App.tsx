@@ -4,6 +4,7 @@ import HomePage from './components/HomePage';
 import QuizPage from './components/QuizPage';
 
 function App() {
+  document.title = "Quiz App";
 
   return (
     <>

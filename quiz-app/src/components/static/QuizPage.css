@@ -7,7 +7,7 @@
 
 @font-face {
     font-family: 'Nunito Sans';
-    src: url('../../assets/Lato/Lato-Bold.ttf');
+    src: url('../../assets/Lato/Lato-Regular.ttf');
 }
 
 .quiz-container {
@@ -31,8 +31,9 @@
 }
 
 .qTitle {
-    color: #fff;
-    font-size: 42px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 22px;
+    font-weight: lighter;
     margin: 0;
     font-family: 'Nunito Sans', sans-serif;
 }
@@ -57,19 +58,34 @@
     justify-content: center;
 }
 
-@media screen and (max-width: 425px) {
-    .qTitle {
-        font-size: 2px;
-        color: #f0f0f0;
-    }
+/* MCQ Buttons */
+@keyframes shake {
+    0% { transform: translateX(0); background-color: var(--wrong);}
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
 }
-@media screen and (max-width: 768px) {
-    .qTitle {
-        font-size: 36px;
-    }
+  
+@keyframes correct {
+    0% { transform: scale(1); background-color: var(--correct);}
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1.2); }
+    75% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
-/* MCQ Buttons */
+.incorrect {
+    background-color: red;
+    color: white;
+    animation: shake 0.5s;
+}
+.correct {
+    background-color: green;
+    color: white;
+    animation: correct 0.5s;
+}
+
   
 .mcq-button {
     flex: 1;
@@ -77,8 +93,8 @@
     max-width: 300px; /* Maximum width to keep buttons uniform */
     margin: 10px;
     padding: 15px 30px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 750;
     text-align: center;
     color: #fff;
     background-color: var(--normal); /* Green */
@@ -118,3 +134,4 @@
       padding: 12px 24px;
     }
 }
+
