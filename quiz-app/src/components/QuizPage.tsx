@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import './static/QuizPage.css'
+import './static/HomePage.css'
 import axios from 'axios';
 import $ from 'jquery';
 import LoaderComponent from "./Loader";
@@ -30,6 +31,8 @@ const QuizPage: React.FC = () => {
 
     const [q_index, setQ_Index] = useState<number>(1);
     const [check, setCheck] = useState<CheckResponse>(CheckResponse.UNDEFINED);
+
+    const [score, setScore] = useState<number>(0);
 
     
     const fetchTriviaAPI = async () => {
@@ -67,6 +70,19 @@ const QuizPage: React.FC = () => {
                 </>
             );
         }
+        else {
+            return(
+                <>
+                    <h1>Thanks for Playing !</h1>
+                    <div className="button-container">
+                        <h2> Your Score: </h2>
+                        <h1>{score}</h1>
+                    </div>
+                    <br />
+                    <div className="title-button"><button onClick={() => window.location.reload()}><span>Restart Quiz</span></button></div>
+                </>
+            );
+        }
     }
 
     const validateAnswer = (value: string, id_num: number) => {
@@ -75,6 +91,7 @@ const QuizPage: React.FC = () => {
             $('#' + id_num).css({
                 'background-color': 'var(--correct)'
             });
+            setScore(score + 1);
             setCheck(CheckResponse.CORRECT);
         }
         else {
@@ -87,6 +104,7 @@ const QuizPage: React.FC = () => {
     
     
     useEffect(() => {
+        setScore(0);
         fetchTriviaAPI();
     }, []); // The empty dependency array ensures this runs only once when the component mounts
 
